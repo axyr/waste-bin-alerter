@@ -6,8 +6,5 @@ use Domain\Alerter\Event;
 
 class Alert
 {
-    public function __construct(
-        public Event $event,
-    ) {
-    }
+    public function __construct(public Event $event) { }
 }

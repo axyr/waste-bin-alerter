@@ -3,12 +3,12 @@
 return [
     'bridge_ip' => env('ALERTER_BRIDGE_IP'),
     'bridge_username' => env('ALERTER_BRIDGE_USERNAME'),
-    'lights' => explode(',', (string)env('ALERTER_LIGHTS')),
     'calendar' => env('ALERTER_BRIDGE_CALENDAR'),
+    'lights' => explode(',', (string)env('ALERTER_LIGHTS')),
     'colors' => [
         'green' => '#00d100',
         'orange' => '#ffa000',
-        'blue' => '#005cff',
+        'blue' => '#007ed8',
     ],
     'alerts' => [
         'gft' => 'green',

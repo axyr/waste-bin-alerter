@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Domain\Alerter\Alerter;
+use Domain\Alerter\Events\Alert;
 use Domain\Alerter\Listeners\HueAlerter;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -15,7 +15,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        Alerter::class => [
+        Alert::class => [
             HueAlerter::class,
         ]
     ];

@@ -5,8 +5,8 @@ namespace App\Console\Commands;
 use Carbon\Carbon;
 use Domain\Alerter\Alerter;
 use Domain\Alerter\CalendarParser;
+use Domain\Alerter\Event;
 use Domain\Alerter\Events\Alert;
-use Domain\Alerter\Listeners\HueAlerter;
 use Illuminate\Console\Command;
 
 class EventAlertCommand extends Command
@@ -30,35 +30,17 @@ class EventAlertCommand extends Command
 
     public function handle(): int
     {
-        if($this->shouldCheckAlerts()) {
-            $this->checkAlerts();
-        }
+        $this->checkAlerts();
 
         return $this->isolatedExitCode;
     }
 
-    public function shouldCheckAlerts(): bool
-    {
-        return true;
-        $date = $this->date();
-
-        return $date->isSaturday() || $date->isSunday() || $date->isWednesday();
-    }
-
-    private function checkAlerts():void
+    private function checkAlerts(): void
     {
         $this->initializeCalendar();
 
         if ($event = $this->parser->getFirstUpcomingEvent()) {
-            $date = $event->date()->format('Y-m-d');
-            $type = $event->type();
-            $this->info("{$date} : {$type}");
-
-            if(!$this->option('dryrun')) {
-                $listener = new HueAlerter();
-                $listener->handle(new Alert($event));
-                // (new Alerter($event))->emit();
-            }
+            $this->handleAlert($event);
         } else {
             $this->line('No upcoming event');
         }
@@ -66,8 +48,18 @@ class EventAlertCommand extends Command
 
     private function initializeCalendar(): void
     {
-        $this->parser->setFile($this->calendar());
-        $this->parser->setDate($this->date());
+        $this->parser
+            ->setFile($this->calendar())
+            ->setDate($this->date());
+    }
+
+    private function handleAlert(Event $event): void
+    {
+        $this->info($event->date()->format('Y-m-d') . ' : ' . $event->type());
+
+        if ( ! $this->option('dryrun')) {
+            event(new Alert($event));
+        }
     }
 
     private function date(): Carbon
