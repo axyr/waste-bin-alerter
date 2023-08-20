@@ -26,15 +26,9 @@ class HueAlerter
     private function getRGB(Alert $alert): Rgb
     {
         $type = $alert->event->type();
+        $color = config("alerter.alerts.{$type}");
+        $hex = config("alerter.colors.{$color}");
 
-        $green = '#00d100';
-        $orange = '#ffa000';
-        $blue = '#005cff';
-
-        return match ($type) {
-            'gft', 'rest' => Hex::fromString($green)->toRgb(),
-            'pmd' => Hex::fromString($orange)->toRgb(),
-            'papier' => Hex::fromString($blue)->toRgb(),
-        };
+        return Hex::fromString($hex)->toRgb();
     }
 }

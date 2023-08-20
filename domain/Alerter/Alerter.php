@@ -4,9 +4,9 @@ namespace Domain\Alerter;
 
 use Domain\Alerter\Events\Alert;
 
-readonly class Alerter
+class Alerter
 {
-    public function __construct(private Event $event)
+    public function __construct(private readonly Event $event)
     {
     }
 

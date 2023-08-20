@@ -4,12 +4,11 @@ namespace Domain\Alerter;
 
 use Carbon\Carbon;
 
-readonly class Event
+class Event
 {
-
     public function __construct(
-        private Carbon $date,
-        private string $type,
+        private readonly Carbon $date,
+        private readonly string $type,
     ) {
     }
 
