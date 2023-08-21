@@ -15,6 +15,9 @@ class Kernel extends ConsoleKernel
             ->daily()
             ->between('18:00', '21:00')
             ->everyMinute()
+            ->before(function () {
+                Log::info('Running the scheduled command');
+            })
             ->appendOutputTo($logfile);
     }
 
