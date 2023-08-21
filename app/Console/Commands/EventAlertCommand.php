@@ -38,6 +38,7 @@ class EventAlertCommand extends Command
     private function checkAlerts(): void
     {
         $this->initializeCalendar();
+        $this->info('Running alerter at time: ' . $this->date()->format('Y-m-d H:i:s'));
 
         if ($event = $this->parser->getFirstUpcomingEvent()) {
             $this->handleAlert($event);

@@ -4,6 +4,7 @@ return [
     'bridge_ip' => env('ALERTER_BRIDGE_IP'),
     'bridge_username' => env('ALERTER_BRIDGE_USERNAME'),
     'calendar' => env('ALERTER_BRIDGE_CALENDAR'),
+    'cache_calendar_in_seconds' => 60 * 60 * 24,
     'lights' => explode(',', (string)env('ALERTER_LIGHTS')),
     'colors' => [
         'green' => '#00d100',
