@@ -10,7 +10,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $logfile = storage_path('logs/laravel-scheduled-' . now()->format('Y-m-d') . '.log');
-        $schedule->command('event:alert')->daily()->between('18:00', '20:00')->everyMinute()->appendOutputTo($logfile);
+        $schedule->command('event:alert')->daily()->between('18:00', '21:00')->everyMinute()->appendOutputTo($logfile);
     }
 
     protected function commands(): void
