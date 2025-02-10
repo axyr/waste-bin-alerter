@@ -20,6 +20,7 @@ jobs:
         run: |
           IMAGE_PLATFORM="${IMAGE_PLATFORM:-linux/amd64}"
           docker buildx build \
+          
           --platform $IMAGE_PLATFORM \
           --build-arg IMAGE_PLATFORM=$IMAGE_PLATFORM \
           --file ./docker/php/Dockerfile \
