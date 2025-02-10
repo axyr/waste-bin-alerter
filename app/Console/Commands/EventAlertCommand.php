@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Carbon\Carbon;
-use Domain\Alerter\Alerter;
 use Domain\Alerter\CalendarParser;
 use Domain\Alerter\Event;
 use Domain\Alerter\Events\Alert;
@@ -38,7 +37,7 @@ class EventAlertCommand extends Command
     private function checkAlerts(): void
     {
         $this->initializeCalendar();
-        
+
         if ($event = $this->parser->getFirstUpcomingEvent()) {
             $this->handleAlert($event);
         } else {

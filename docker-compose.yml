@@ -1,0 +1,14 @@
+services:
+  php:
+    tty: true
+    build:
+      dockerfile: ./docker/php/Dockerfile
+      context: .
+    container_name: ${COMPOSE_PROJECT_NAME}_php
+    restart: always
+    working_dir: /app
+    volumes:
+      - './.:/app'
+      - './docker/php/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini'
+    ports:
+        - '9000:9000'

@@ -4,13 +4,12 @@ namespace Tests\Unit;
 
 use Carbon\Carbon;
 use Domain\Alerter\CalendarParser;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class CalendarParserTest extends TestCase
 {
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testItParsesTheCalendar(string $now,string $expectedDate): void
     {
         Carbon::setTestNow($now);
