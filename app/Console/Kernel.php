@@ -11,7 +11,7 @@ class Kernel extends ConsoleKernel
     {
         $logfile = storage_path('logs/laravel-scheduled-' . now()->format('Y-m-d') . '.log');
 
-        $schedule->command('event:alert')->between('18:00', '20:00')->everyFiveMinutes()->appendOutputTo($logfile);
+        $schedule->command('event:alert')->between('18:00', '23:00')->everyFiveMinutes()->appendOutputTo($logfile);
     }
 
     protected function commands(): void
