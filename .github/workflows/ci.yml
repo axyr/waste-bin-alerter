@@ -24,5 +24,5 @@ jobs:
           --build-arg IMAGE_PLATFORM=$IMAGE_PLATFORM \
           --file ./docker/php/Dockerfile \
           --tag ghcr.io/axyr/hue-waste-bin-alerter:latest \
-          --tag ghcr.io/axyr/hue-waste-bin-alerter:${GIT_BRANCH}-${GIT_SHA:0:7}-$(date +%s) \
+          --tag ghcr.io/axyr/hue-waste-bin-alerter:${GITHUB_REF_NAME}-${GIT_SHA::7}-$(date +%s) \
           --push .
